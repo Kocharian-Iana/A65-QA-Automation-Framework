@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class HomeWork16 extends BaseTest {
+public class Homework16 extends BaseTest {
     @Test
     public void registrationNavigation(){
         ChromeOptions options = new ChromeOptions();
