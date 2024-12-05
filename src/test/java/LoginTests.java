@@ -1,4 +1,6 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
@@ -10,17 +12,12 @@ public class LoginTests extends BaseTest {
     @Test
     public void loginEmptyEmailPassword() throws InterruptedException {
 
-//      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://testpro.io/";
-        driver.get(url);
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-        Thread.sleep(2000); //Added a temporary Thread.sleep for demo purposes
-        driver.quit();
+        WebElement loginField = driver.findElement(By.cssSelector("[type='email']"));
+        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
+        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
+        loginField.sendKeys("iana.kocharian@testpro.io");
+        passwordField.sendKeys("CwqOPgQw");
+        submitButton.click();
+        Assert.assertEquals(driver.getCurrentUrl(),"https://qa.koel.app/");
     }
 }
