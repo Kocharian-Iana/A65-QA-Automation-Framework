@@ -13,12 +13,6 @@ import java.time.Duration;
 public class Homework17 extends BaseTest {
    @Test
     public void addSongToPlaylist() throws InterruptedException {
-       ChromeOptions options = new ChromeOptions();
-       options.addArguments("--remote-allow-origins=*");
-       WebDriver driver = new ChromeDriver(options);
-       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-       driver.get("https://qa.koel.app/");
        WebElement loginField = driver.findElement(By.cssSelector("[type='email']"));
        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
@@ -40,12 +34,9 @@ public class Homework17 extends BaseTest {
        WebElement createNewPlaylist = driver.findElement(By.cssSelector("#songResultsWrapper [required]"));
        createNewPlaylist.sendKeys("test1");
        createNewPlaylist.sendKeys(Keys.ENTER);
-      // WebElement successMessage = driver.findElement(By.cssSelector("div.success.show"));
        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
        WebElement successMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
-       // successMessage = wait.until(ExpectedConditions.visibilityOf(successMessage));
        String testMessage = successMessage.getText();
-       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
        Assert.assertTrue(successMessage.isDisplayed());
        Assert.assertTrue(testMessage.contains("Created playlist 'test1.'"));
 
@@ -53,9 +44,6 @@ public class Homework17 extends BaseTest {
       deletePlaylistButton.click();
       WebElement okButton = driver.findElement(By.cssSelector(".ok"));
       okButton.click();
-      driver.quit();
-
-
     }
 
 }
