@@ -4,7 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -39,11 +40,14 @@ public class Homework17 extends BaseTest {
        WebElement createNewPlaylist = driver.findElement(By.cssSelector("#songResultsWrapper [required]"));
        createNewPlaylist.sendKeys("test1");
        createNewPlaylist.sendKeys(Keys.ENTER);
-       WebElement successMessage = driver.findElement(By.cssSelector(".alertify-logs"));
-      String testMessage = successMessage.getText();
-      // падает на ассерте?
-      Assert.assertTrue(successMessage.isDisplayed());
-      Assert.assertTrue(testMessage.contains("Created playlist 'test1.'"));
+      // WebElement successMessage = driver.findElement(By.cssSelector("div.success.show"));
+       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+       WebElement successMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
+       // successMessage = wait.until(ExpectedConditions.visibilityOf(successMessage));
+       String testMessage = successMessage.getText();
+       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+       Assert.assertTrue(successMessage.isDisplayed());
+       Assert.assertTrue(testMessage.contains("Created playlist 'test1.'"));
 
       WebElement deletePlaylistButton = driver.findElement(By.cssSelector(".btn-delete-playlist"));
       deletePlaylistButton.click();
