@@ -29,13 +29,12 @@ public class BaseTest {
         driver.get(url);
 
     }
-
-
     @AfterMethod
     public void closeBrowser() {
-    driver.quit();
+        driver.quit();
     }
-    public void login (String email, String password){
+
+    public void login(String email, String password) {
         WebElement loginField = driver.findElement(By.cssSelector("[type='email']"));
         WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
         WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
