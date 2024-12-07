@@ -1,5 +1,7 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
@@ -32,5 +34,13 @@ public class BaseTest {
     @AfterMethod
     public void closeBrowser() {
     driver.quit();
+    }
+    public void login (String email, String password){
+        WebElement loginField = driver.findElement(By.cssSelector("[type='email']"));
+        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
+        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
+        loginField.sendKeys(email);
+        passwordField.sendKeys(password);
+        submitButton.click();
     }
 }

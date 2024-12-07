@@ -38,8 +38,7 @@ public class Homework17 extends BaseTest {
        WebElement successMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
        String testMessage = successMessage.getText();
        Assert.assertTrue(successMessage.isDisplayed());
-       Assert.assertTrue(testMessage.contains("Created playlist 'test1.'"));
-
+       Assert.assertTrue(testMessage.contains("Created playlist \"test1.\""));
       WebElement deletePlaylistButton = driver.findElement(By.cssSelector(".btn-delete-playlist"));
       deletePlaylistButton.click();
       WebElement okButton = driver.findElement(By.cssSelector(".ok"));
