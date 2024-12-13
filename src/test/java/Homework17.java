@@ -5,9 +5,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
 import java.time.Duration;
+
 public class Homework17 extends BaseTest {
-    @Test
+    @Test(groups = "Smoke")
     public void addSongToPlaylist() throws InterruptedException {
         WebElement loginField = driver.findElement(By.cssSelector("[type='email']"));
         WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));

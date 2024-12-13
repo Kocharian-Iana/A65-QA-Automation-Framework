@@ -31,6 +31,7 @@ public class BaseTest {
         driver.get(url);
 
     }
+
     @AfterMethod
     public void closeBrowser() {
         driver.quit();
