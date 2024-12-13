@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class LoginTests extends BaseTest {
@@ -12,15 +13,9 @@ public class LoginTests extends BaseTest {
         //Assert.assertEquals(driver.getCurrentUrl(),"https://qa.koel.app/#!/home");
     }
 
-    @Test(groups = "Regression")
-    public void loginWithIncorrectPassword() {
-        login("iana.kocharian@testpro.io", "incorrectPassword");
-        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/");
-    }
-
-    @Test(groups = "Regression")
-    public void loginWithIncorrectEmail() {
-        login("incorrect@Email.com", "CwqOPgQw");
+    @Test(groups = "Regression", dataProvider = "incorrectCredentials", dataProviderClass = DataProviderCredentials.class)
+    public void loginWithIncorrectCredentials(String email,String password) {
+        login(email,password);
         Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/");
     }
 }

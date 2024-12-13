@@ -3,7 +3,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Homework16 extends BaseTest {
+public class RegistrationPage extends BaseTest {
     @Test(groups = "Smoke")
     public void registrationNavigation() {
         WebElement registrationButton = driver.findElement(By.cssSelector("a[href='registration']"));

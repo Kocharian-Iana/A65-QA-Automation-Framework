@@ -10,7 +10,7 @@
                     <include name="loginTest"/>
                 </methods>
             </class>
-            <class name="Homework17">
+            <class name="AddSongToPlaylistTest">
                 <methods>
                     <include name="addSongToPlaylist"/>
                 </methods>
@@ -20,7 +20,7 @@
                     <include name="changeProfileName"/>
                 </methods>
             </class>
-            <class name="Homework16">
+            <class name="RegistrationPage">
             </class>
 
         </classes>
