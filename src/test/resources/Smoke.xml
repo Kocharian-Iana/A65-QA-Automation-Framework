@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Smoke">
+
+    <test name="Example Test" preserve-order="false">
+        <classes>
+            <class name="LoginTests">
+                <methods>
+                    <include name="loginTest"/>
+                </methods>
+            </class>
+            <class name="Homework17">
+                <methods>
+                    <include name="addSongToPlaylist"/>
+                </methods>
+            </class>
+            <class name="ProfileTests">
+                <methods>
+                    <include name="changeProfileName"/>
+                </methods>
+            </class>
+            <class name="Homework16">
+            </class>
+
+        </classes>
+    </test>
+</suite>

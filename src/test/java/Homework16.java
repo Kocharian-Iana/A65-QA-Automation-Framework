@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Homework16 extends BaseTest {
-    @Test
+    @Test(groups = "Smoke")
     public void registrationNavigation() {
         WebElement registrationButton = driver.findElement(By.cssSelector("a[href='registration']"));
         registrationButton.click();

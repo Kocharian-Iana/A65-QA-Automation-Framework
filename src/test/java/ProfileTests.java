@@ -4,12 +4,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
 import java.time.Duration;
 import java.util.UUID;
 
-public class ProfileTests extends BaseTest{
-    @Test
-    public void changeProfileName(){
+public class ProfileTests extends BaseTest {
+    @Test(description = "check if the profile name has been changed correctly", groups = "Smoke")
+    public void changeProfileName() {
         String newName = UUID.randomUUID().toString();
         login("iana.kocharian@testpro.io", "CwqOPgQw");
         WebElement avatar = driver.findElement(By.cssSelector("#userBadge img"));
@@ -25,6 +26,6 @@ public class ProfileTests extends BaseTest{
         profileNameField.sendKeys(newName);
         WebElement saveButton = driver.findElement(By.cssSelector(".btn-submit"));
         saveButton.click();
-        Assert.assertEquals(newName,profileNameField.getText());
+        Assert.assertEquals(newName, profileNameField.getText());
     }
 }
