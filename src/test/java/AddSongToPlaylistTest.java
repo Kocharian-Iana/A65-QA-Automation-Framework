@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class Homework17 extends BaseTest {
+public class AddSongToPlaylistTest extends BaseTest {
     @Test(groups = "Smoke")
     public void addSongToPlaylist() throws InterruptedException {
         WebElement loginField = driver.findElement(By.cssSelector("[type='email']"));
