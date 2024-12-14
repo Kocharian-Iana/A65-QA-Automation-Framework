@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Smoke">
-
+    <parameter name="baseURL" value="https://qa.koel.app/"/>
     <test name="Example Test" preserve-order="false">
         <classes>
             <class name="LoginTests">
@@ -22,7 +22,6 @@
             </class>
             <class name="RegistrationPage">
             </class>
-
         </classes>
     </test>
 </suite>
