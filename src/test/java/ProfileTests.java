@@ -4,7 +4,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.time.Duration;
 import java.util.UUID;
 
@@ -26,6 +25,8 @@ public class ProfileTests extends BaseTest {
         profileNameField.sendKeys(newName);
         WebElement saveButton = driver.findElement(By.cssSelector(".btn-submit"));
         saveButton.click();
-        Assert.assertEquals(newName, profileNameField.getText());
+        WebElement userNameLebel = driver.findElement(By.cssSelector("span .name"));
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("span .name"), newName));
+        Assert.assertEquals(newName, userNameLebel.getText());
     }
 }
