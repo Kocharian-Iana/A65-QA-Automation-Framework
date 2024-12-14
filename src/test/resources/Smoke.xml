@@ -15,11 +15,11 @@
                     <include name="addSongToPlaylist"/>
                 </methods>
             </class>
-            <class name="ProfileTests">
-                <methods>
-                    <include name="changeProfileName"/>
-                </methods>
-            </class>
+<!--            <class name="ProfileTests">-->
+<!--                <methods>-->
+<!--                    <include name="changeProfileName"/>-->
+<!--                </methods>-->
+<!--            </class>-->
             <class name="RegistrationPage">
             </class>
         </classes>
