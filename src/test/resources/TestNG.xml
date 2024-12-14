@@ -9,6 +9,7 @@
             <class name="RegistrationPage"/>
             <class name="AddSongToPlaylistTest"/>
             <class name="ProfileTests"/>
+            <class name="Homework19"/>
         </classes>
     </test>
 </suite>
