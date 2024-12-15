@@ -1,10 +1,8 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import java.time.Duration;
 import java.util.UUID;
 
 public class ProfileTests extends BaseTest {
@@ -13,7 +11,6 @@ public class ProfileTests extends BaseTest {
         String newName = UUID.randomUUID().toString();
         login("iana.kocharian@testpro.io", "CwqOPgQw");
         WebElement avatar = driver.findElement(By.cssSelector("#userBadge img"));
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5000));
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#userBadge img")));
         avatar.click();
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#inputProfileCurrentPassword")));
