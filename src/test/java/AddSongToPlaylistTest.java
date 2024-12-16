@@ -30,7 +30,6 @@ public class AddSongToPlaylistTest extends BaseTest {
         WebElement createNewPlaylist = driver.findElement(By.cssSelector("#songResultsWrapper [required]"));
         createNewPlaylist.sendKeys("test1");
         createNewPlaylist.sendKeys(Keys.ENTER);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement successMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
         String testMessage = successMessage.getText();
         Assert.assertTrue(successMessage.isDisplayed());
