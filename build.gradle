@@ -19,14 +19,19 @@ test {
     useTestNG() {
         suites "src/test/resources/TestNG.xml"
     }
-    test {
-        useTestNG() {
-            suites "src/test/resources/Smoke.xml"
-        }
-    }
+//    test {
+//        useTestNG() {
+//            suites "src/test/resources/Smoke.xml"
+//        }
+//    }
     test {
         useTestNG() {
             suites "src/test/resources/PlaySong.xml"
+        }
+    }
+
+    task smokeTest(type: Test){
+    useTestNG() {suites "src/test/resources/Smoke.xml"
         }
     }
 }
