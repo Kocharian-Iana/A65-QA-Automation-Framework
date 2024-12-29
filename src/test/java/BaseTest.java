@@ -1,7 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
@@ -33,24 +31,14 @@ public class BaseTest {
         options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        //String url = "https://qa.koel.app/";
         driver.get(url);
         wait = new WebDriverWait(driver, Duration.ofSeconds(5000));
         actions = new Actions(driver);
 
     }
-
     @AfterMethod
     public void closeBrowser() {
         driver.quit();
     }
 
-    public void login(String email, String password) {
-        WebElement loginField = driver.findElement(By.cssSelector("[type='email']"));
-        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
-        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
-        loginField.sendKeys(email);
-        passwordField.sendKeys(password);
-        submitButton.click();
-    }
 }

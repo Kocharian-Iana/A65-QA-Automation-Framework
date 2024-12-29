@@ -6,10 +6,10 @@
     <test name="Example Test" preserve-order="false">
         <classes>
             <class name="LoginTests"/>
-            <class name="RegistrationPage"/>
+            <class name="RegistrationTest"/>
             <class name="AddSongToPlaylistTest"/>
             <class name="ProfileTests"/>
-            <class name="Homework19"/>
+            <class name="DeletePlayListTest"/>
             <class name="PlaySongTest"/>
             <class name="SongsTest"/>
             <class name="RenamePlaylist"/>
