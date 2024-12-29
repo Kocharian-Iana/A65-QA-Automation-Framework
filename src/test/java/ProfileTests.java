@@ -1,22 +1,27 @@
+import org.example.HomePage;
+import org.example.LoginPage;
+import org.example.ProfilePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
 import java.util.UUID;
 
 public class ProfileTests extends BaseTest {
+    LoginPage loginPage = null;
+    ProfilePage profilePage = null;
+
     @Test(description = "check if the profile name has been changed correctly", groups = "Smoke")
     public void changeProfileName() {
+        loginPage = new LoginPage(driver);
         String newName = UUID.randomUUID().toString();
-        login("iana.kocharian@testpro.io", "CwqOPgQw");
-        WebElement avatar = driver.findElement(By.cssSelector("#userBadge img"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#userBadge img")));
-        avatar.click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#inputProfileCurrentPassword")));
-        WebElement currentPasswordField = driver.findElement(By.cssSelector("#inputProfileCurrentPassword"));
-        currentPasswordField.clear();
-        currentPasswordField.sendKeys("CwqOPgQw");
+        loginPage.login("iana.kocharian@testpro.io", "CwqOPgQw");
+        profilePage = new ProfilePage(driver);
+        profilePage.getProfileAvatar(wait).click();
+        profilePage.getCurrentPasswordField(wait).clear();
+        profilePage.getCurrentPasswordField(wait).sendKeys("CwqOPgQw");
         WebElement profileNameField = driver.findElement(By.cssSelector("#inputProfileName"));
         profileNameField.clear();
         profileNameField.sendKeys(newName);

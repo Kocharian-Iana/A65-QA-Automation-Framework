@@ -1,15 +1,22 @@
+import org.example.LoginPage;
+import org.example.SongsPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class SongsTest extends BaseTest {
+    LoginPage loginPage = null;
+    SongsPage songsPage = null;
+
     @Test
     public void countSongs() {
-        login("iana.kocharian@testpro.io", "CwqOPgQw");
-        WebElement allSongsPage = driver.findElement(By.cssSelector("[href='\\#\\!\\/songs']"));
-        allSongsPage.click();
+        loginPage = new LoginPage(driver);
+        loginPage.login("iana.kocharian@testpro.io", "CwqOPgQw");
+        songsPage = new SongsPage(driver);
+        songsPage.getAllSongPage().click();
         //создаем лист с лоекаторами всех  песен
         List<WebElement> songs = driver.findElements(By.cssSelector(".song-item"));
         //узнаем размер нашего списка песен

@@ -1,29 +1,33 @@
+import org.example.HomePage;
+import org.example.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class PlaySongTest extends BaseTest {
+    LoginPage loginPage = null;
+    HomePage homePage = null;
+
     @Test
     public void playSong() {
-        login("iana.kocharian@testpro.io", "CwqOPgQw");
-        WebElement playButton = driver.findElement(By.cssSelector(".album-thumb-wrapper .fa.fa-play"));
-        actions.moveToElement(playButton).perform();
-        playButton.click();
+        loginPage = new LoginPage(driver);
+        loginPage.login("iana.kocharian@testpro.io", "CwqOPgQw");
+        homePage = new HomePage(driver);
+        actions.moveToElement(homePage.getPlayButton()).perform();
+        homePage.getPlayButton().click();
         WebElement nextSongButton = driver.findElement(By.cssSelector(".next.fa.fa-step-forward"));
         nextSongButton.click();
-        WebElement visualizer = driver.findElement(By.cssSelector("[data-testid='toggle-visualizer-btn']"));
-        Assert.assertTrue(visualizer.isDisplayed());
+        Assert.assertTrue(homePage.getVisualizer().isDisplayed());
     }
 
     @Test
-    public void playSongByContextClick() throws InterruptedException {
-        login("iana.kocharian@testpro.io", "CwqOPgQw");
-        WebElement firstSongInList = driver.findElement(By.cssSelector("ol.top-song-list > li:first-child [tabindex='0']"));
-        actions.contextClick(firstSongInList).perform();
-        WebElement playButton = driver.findElement(By.cssSelector(".playback"));
-        playButton.click();
-        WebElement visualizer = driver.findElement(By.cssSelector("[data-testid='toggle-visualizer-btn']"));
-        Assert.assertTrue(visualizer.isDisplayed());
+    public void playSongByContextClick() {
+        loginPage = new LoginPage(driver);
+        homePage = new HomePage(driver);
+        loginPage.login("iana.kocharian@testpro.io", "CwqOPgQw");
+        actions.contextClick(homePage.getFirstSongInList()).perform();
+        homePage.getPlayButtonFromContextMenu().click();
+        Assert.assertTrue(homePage.getVisualizer().isDisplayed());
     }
 }
