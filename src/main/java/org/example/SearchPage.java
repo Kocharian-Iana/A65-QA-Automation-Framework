@@ -3,7 +3,6 @@ package org.example;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SearchPage extends BasePage {
     By searchField = (By.cssSelector("[type='search']"));
@@ -11,7 +10,7 @@ public class SearchPage extends BasePage {
     By highlightSongInTheList = (By.xpath("/html//section[@id='songResultsWrapper']//table[@class='items']//td[@class='title']"));
     By addToButton = (By.cssSelector(".btn-add-to"));
     By createNewPlaylist = (By.cssSelector("#songResultsWrapper [required]"));
-    By successMessage = (By.cssSelector("div.success.show"));
+
 
     public WebElement getSearchField() {
         return FindElement(searchField);
@@ -32,11 +31,6 @@ public class SearchPage extends BasePage {
     public WebElement getCreateNewPlaylist() {
         return FindElement(createNewPlaylist);
     }
-
-    public WebElement getSuccessMessage(WebDriverWait wait) {
-        return waitAndFindWebElement(wait, successMessage);
-    }
-
     public SearchPage(WebDriver exitedDriver) {
         super(exitedDriver);
     }
