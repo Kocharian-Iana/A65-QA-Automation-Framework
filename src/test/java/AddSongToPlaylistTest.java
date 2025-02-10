@@ -1,3 +1,4 @@
+import org.example.BasePage;
 import org.example.LoginPage;
 import org.example.PlayListPage;
 import org.example.SearchPage;
@@ -22,9 +23,9 @@ public class AddSongToPlaylistTest extends BaseTest {
         searchPage.getAddToButton().click();
         searchPage.getCreateNewPlaylist().sendKeys(playListName);
         searchPage.getCreateNewPlaylist().sendKeys(Keys.ENTER);
-        searchPage.getSuccessMessage(wait).getText();
-        String testMessage = searchPage.getSuccessMessage(wait).getText();
-        Assert.assertTrue(searchPage.getSuccessMessage(wait).isDisplayed());
+        searchPage.getSuccessMessage().getText();
+        String testMessage = searchPage.getSuccessMessage().getText();
+        Assert.assertTrue(searchPage.getSuccessMessage().isDisplayed());
         Assert.assertTrue(testMessage.contains("Created playlist \"test1.\""));
         playListPage = new PlayListPage(driver);
         playListPage.deletePlayListByButton(playListName);

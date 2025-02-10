@@ -9,6 +9,7 @@
             <class name="RegistrationTest"/>
             <class name="AddSongToPlaylistTest"/>
             <class name="ProfileTests"/>
+            <class name="CreatePlaylistTest"/>
             <class name="DeletePlayListTest"/>
             <class name="PlaySongTest"/>
             <class name="SongsTest"/>

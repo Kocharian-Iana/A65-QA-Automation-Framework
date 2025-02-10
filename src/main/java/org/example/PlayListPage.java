@@ -13,7 +13,9 @@ public class PlayListPage extends BasePage {
     By newPlayListNameField = (By.cssSelector("input[placeholder='↵ to save']"));
     By deleteButton = (By.xpath("//li [contains(text(), 'Delete')]"));
     By deletePlaylistButton = (By.cssSelector(".btn-delete-playlist"));
-    By  playListInput = (By.cssSelector("[data-testid = 'inline-playlist-name-input']"));
+    By playListInput = (By.cssSelector("[data-testid = 'inline-playlist-name-input']"));
+    String playListLocator = "//a[contains(text(), '%s')]";
+
 
     public WebElement getPlusButton() {
         return FindElement(plusButton);
@@ -35,7 +37,7 @@ public class PlayListPage extends BasePage {
         return FindElement(deletePlaylistButton);
     }
 
-    public WebElement getPlayListInput(){
+    public WebElement getPlayListInput() {
         return FindElement(playListInput);
     }
 
@@ -43,12 +45,12 @@ public class PlayListPage extends BasePage {
         getPlusButton().click();
         getNewPlayListButton().click();
         getNewPlayListNameField().click();
-        getNewPlayListNameField().sendKeys("TestPlayList");
+        getNewPlayListNameField().sendKeys(playListName);
         getNewPlayListNameField().sendKeys(Keys.ENTER);
     }
 
     public void deletePlayListByContextMenu(WebDriverWait wait, Actions actions, String playListName) {
-        WebElement playList = waitAndFindWebElement(wait, By.xpath(String.format("//a[contains(text(), '%s')]", playListName)));
+        WebElement playList = waitAndFindWebElement(By.xpath(String.format("//a[contains(text(), '%s')]", playListName)));
         actions.contextClick(playList).perform();
         getDeleteButton().click();
     }
@@ -60,5 +62,20 @@ public class PlayListPage extends BasePage {
 
     public PlayListPage(WebDriver exitedDriver) {
         super(exitedDriver);
+    }
+
+    public WebElement getPlayListByName(String playListName) {
+        return waitAndFindWebElement(By.xpath(String.format(playListLocator, playListName)));
+
+    }
+
+    public void renamePlayListName(String currentPlayListName, String newPlayListName) {
+        doubleClickToElement(getPlayListByName(currentPlayListName));
+        for (int i = 0; i < currentPlayListName.length(); i++) {
+            getPlayListInput().sendKeys(Keys.BACK_SPACE);
+        }
+        getPlayListInput().sendKeys(newPlayListName);
+        getPlayListInput().sendKeys(Keys.ENTER);
+        getSuccessMessage();
     }
 }

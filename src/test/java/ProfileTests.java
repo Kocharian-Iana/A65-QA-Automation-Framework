@@ -1,4 +1,3 @@
-import org.example.HomePage;
 import org.example.LoginPage;
 import org.example.ProfilePage;
 import org.openqa.selenium.By;
@@ -30,5 +29,18 @@ public class ProfileTests extends BaseTest {
         WebElement userNameLebel = driver.findElement(By.cssSelector("span .name"));
         wait.until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("span .name"), newName));
         Assert.assertEquals(newName, userNameLebel.getText());
+    }
+
+    @Test
+    public void changeThemeTest() {
+        String themeName = "Classic";
+        loginPage = new LoginPage(driver);
+        loginPage.login("iana.kocharian@testpro.io", "CwqOPgQw");
+        profilePage = new ProfilePage(driver);
+        // проверить вейтеры, падает на клик по аватару
+        profilePage.getProfileAvatar(wait).click();
+        profilePage.choseThemeByName("Classic");
+        Assert.assertTrue(profilePage.themeIsSelected(themeName));
+
     }
 }
