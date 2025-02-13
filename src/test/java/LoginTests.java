@@ -12,6 +12,7 @@ public class LoginTests extends BaseTest {
         loginPage = new LoginPage(driver);
         loginPage.login("iana.kocharian@testpro.io", "CwqOPgQw");
         homePage = new HomePage(driver);
+        loginPage.waitForHomePageToLoad();
         Assert.assertTrue(homePage.getAvatar().isDisplayed());
         Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/#!/home");
     }

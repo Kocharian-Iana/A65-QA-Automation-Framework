@@ -1,14 +1,17 @@
 package org.example;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class SongsPage extends BasePage{
-    By  allSongsPage = (By.cssSelector("[href='\\#\\!\\/songs']"));
-    public WebElement getAllSongPage(){
-        return FindElement(allSongsPage);
+public class SongsPage extends BasePage {
+    @FindBy(css = "[href='\\#\\!\\/songs']")
+    WebElement allSongsPage;
+
+    public WebElement getAllSongPage() {
+        return allSongsPage;
     }
+
     public SongsPage(WebDriver exitedDriver) {
         super(exitedDriver);
     }

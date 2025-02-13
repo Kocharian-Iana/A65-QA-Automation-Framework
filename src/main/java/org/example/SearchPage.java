@@ -1,36 +1,42 @@
 package org.example;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class SearchPage extends BasePage {
-    By searchField = (By.cssSelector("[type='search']"));
-    By viewAllButton = (By.cssSelector("[data-test='view-all-songs-btn']"));
-    By highlightSongInTheList = (By.xpath("/html//section[@id='songResultsWrapper']//table[@class='items']//td[@class='title']"));
-    By addToButton = (By.cssSelector(".btn-add-to"));
-    By createNewPlaylist = (By.cssSelector("#songResultsWrapper [required]"));
+    @FindBy(css = "[type='search']")
+    WebElement searchField;
+    @FindBy(css = "[data-test='view-all-songs-btn']")
+    WebElement viewAllButton;
+    @FindBy(xpath = "/html//section[@id='songResultsWrapper']//table[@class='items']//td[@class='title']")
+    WebElement highlightSongInTheList;
+    @FindBy(css = ".btn-add-to")
+    WebElement addToButton;
+    @FindBy(css = "#songResultsWrapper [required]")
+    WebElement createNewPlaylist;
 
 
     public WebElement getSearchField() {
-        return FindElement(searchField);
+        return searchField;
     }
 
     public WebElement getViewAllButton() {
-        return FindElement(viewAllButton);
+        return viewAllButton;
     }
 
     public WebElement getHighlightSongInTheList() {
-        return FindElement(highlightSongInTheList);
+        return highlightSongInTheList;
     }
 
     public WebElement getAddToButton() {
-        return FindElement(addToButton);
+        return addToButton;
     }
 
     public WebElement getCreateNewPlaylist() {
-        return FindElement(createNewPlaylist);
+        return createNewPlaylist;
     }
+
     public SearchPage(WebDriver exitedDriver) {
         super(exitedDriver);
     }
