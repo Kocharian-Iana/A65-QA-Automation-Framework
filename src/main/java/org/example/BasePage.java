@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,7 +14,8 @@ import java.util.List;
 
 public abstract class BasePage {
     WebDriver pageDriver = null;
-    By successMessageLocator = (By.cssSelector("div.success.show"));
+    @FindBy(css = "div.success.show")
+    WebElement successMessage;
 
     public BasePage(WebDriver exitedDriver) {
         this.pageDriver = exitedDriver;
@@ -50,6 +52,6 @@ public abstract class BasePage {
     }
 
     public WebElement getSuccessMessage() {
-        return waitAndFindWebElement(successMessageLocator);
+        return successMessage;
     }
 }

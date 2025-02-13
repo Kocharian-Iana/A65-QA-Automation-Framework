@@ -5,40 +5,47 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PlayListPage extends BasePage {
-    By plusButton = (By.cssSelector(".fa.fa-plus-circle.create"));
-    By NewPlayListButton = (By.cssSelector("[data-testid='playlist-context-menu-create-simple']"));
-    By newPlayListNameField = (By.cssSelector("input[placeholder='↵ to save']"));
-    By deleteButton = (By.xpath("//li [contains(text(), 'Delete')]"));
-    By deletePlaylistButton = (By.cssSelector(".btn-delete-playlist"));
-    By playListInput = (By.cssSelector("[data-testid = 'inline-playlist-name-input']"));
+    @FindBy (css=".fa.fa-plus-circle.create" )
+    WebElement plusButton;
+    @FindBy (css ="[data-testid='playlist-context-menu-create-simple']")
+    WebElement NewPlayListButton;
+    @FindBy (css ="input[placeholder='↵ to save']")
+    WebElement newPlayListNameField;
+    @FindBy (xpath ="//li [contains(text(), 'Delete')]")
+    WebElement deleteButton;
+    @FindBy (css =".btn-delete-playlist")
+    WebElement deletePlaylistButton;
+    @FindBy (css ="[data-testid = 'inline-playlist-name-input']")
+    WebElement playListInput;
     String playListLocator = "//a[contains(text(), '%s')]";
 
 
     public WebElement getPlusButton() {
-        return FindElement(plusButton);
+        return plusButton;
     }
 
     public WebElement getNewPlayListButton() {
-        return FindElement(NewPlayListButton);
+        return NewPlayListButton;
     }
 
     public WebElement getNewPlayListNameField() {
-        return FindElement(newPlayListNameField);
+        return newPlayListNameField;
     }
 
     public WebElement getDeleteButton() {
-        return FindElement(deleteButton);
+        return deleteButton;
     }
 
     public WebElement getDeletePlaylistButton() {
-        return FindElement(deletePlaylistButton);
+        return deletePlaylistButton;
     }
 
     public WebElement getPlayListInput() {
-        return FindElement(playListInput);
+        return playListInput;
     }
 
     public void createPlayList(String playListName) {

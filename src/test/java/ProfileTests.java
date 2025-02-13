@@ -18,9 +18,9 @@ public class ProfileTests extends BaseTest {
         String newName = UUID.randomUUID().toString();
         loginPage.login("iana.kocharian@testpro.io", "CwqOPgQw");
         profilePage = new ProfilePage(driver);
-        profilePage.getProfileAvatar(wait).click();
-        profilePage.getCurrentPasswordField(wait).clear();
-        profilePage.getCurrentPasswordField(wait).sendKeys("CwqOPgQw");
+        profilePage.waitForAvatarToBeClickable(wait).click();
+        profilePage.getCurrentPasswordField().clear();
+        profilePage.getCurrentPasswordField().sendKeys("CwqOPgQw");
         WebElement profileNameField = driver.findElement(By.cssSelector("#inputProfileName"));
         profileNameField.clear();
         profileNameField.sendKeys(newName);
@@ -37,10 +37,8 @@ public class ProfileTests extends BaseTest {
         loginPage = new LoginPage(driver);
         loginPage.login("iana.kocharian@testpro.io", "CwqOPgQw");
         profilePage = new ProfilePage(driver);
-        // проверить вейтеры, падает на клик по аватару
-        profilePage.getProfileAvatar(wait).click();
+        profilePage.waitForAvatarToBeClickable(wait).click();
         profilePage.choseThemeByName("Classic");
         Assert.assertTrue(profilePage.themeIsSelected(themeName));
-
     }
 }

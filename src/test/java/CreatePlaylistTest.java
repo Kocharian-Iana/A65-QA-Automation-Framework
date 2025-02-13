@@ -22,7 +22,7 @@ public class CreatePlaylistTest extends BaseTest {
         playListPage = new PlayListPage(driver);
         playListPage.createPlayList("CreatePlayListTest");
         playListPage.getSuccessMessage();
-        int actualSize = homePage.getAllPlayLists().size();
+        int actualSize = homePage.waitForUpdatedPlayLists(previousSize).size();
         Assert.assertNotEquals(actualSize, previousSize);
     }
 

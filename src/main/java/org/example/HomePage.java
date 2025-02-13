@@ -1,48 +1,61 @@
 package org.example;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class HomePage extends BasePage {
-    By avatar = (By.cssSelector(".avatar"));
-    By playButton = (By.cssSelector(".album-thumb-wrapper .fa.fa-play"));
-    By visualizer = (By.cssSelector("[data-testid='toggle-visualizer-btn']"));
-    By firstSongInList = (By.cssSelector("ol.top-song-list > li:first-child [tabindex='0']"));
-    By PlayButtonFromContextMenu = (By.cssSelector(".playback"));
-    By toastNotification = (By.xpath("//div[contains(text(),'Deleted playlist \"TestPlayList.\"')]"));
-    By allPlayLists = (By.cssSelector("#playlists li"));
+    @FindBy(css = ".avatar")
+    WebElement avatar;
+    @FindBy(css = ".album-thumb-wrapper .fa.fa-play")
+    WebElement playButton;
+    @FindBy(css = "[data-testid='toggle-visualizer-btn']")
+    WebElement visualizer;
+    @FindBy(css = "ol.top-song-list > li:first-child [tabindex='0']")
+    List<WebElement> firstSongInList;
+    @FindBy(css = ".playback")
+    WebElement PlayButtonFromContextMenu;
+    @FindBy(xpath = "//div[contains(text(),'Deleted playlist \"TestPlayList.\"')]")
+    WebElement toastNotification;
+    @FindBy(css = "#playlists li")
+    List<WebElement> allPlayLists;
 
 
     public WebElement getAvatar() {
-        return FindElement(avatar);
+        return avatar;
     }
 
     public WebElement getPlayButton() {
-        return FindElement(playButton);
+        return playButton;
     }
 
     public WebElement getVisualizer() {
-        return FindElement(visualizer);
+        return visualizer;
     }
 
     public WebElement getFirstSongInList() {
-        return FindElement(firstSongInList);
+        return (WebElement) firstSongInList;
     }
 
     public WebElement getPlayButtonFromContextMenu() {
-        return FindElement(PlayButtonFromContextMenu);
+        return PlayButtonFromContextMenu;
     }
 
     public WebElement getToastNotification(WebDriverWait wait) {
-        return waitAndFindWebElement(toastNotification);
+        return toastNotification;
     }
 
     public List<WebElement> getAllPlayLists() {
-        return findElements(allPlayLists);
+        return allPlayLists;
+    }
+    public List<WebElement> waitForUpdatedPlayLists(int previousSize) {
+        WebDriverWait wait = new WebDriverWait(pageDriver, Duration.ofSeconds(5));
+        wait.until(driver -> allPlayLists.size() > previousSize);
+        return allPlayLists;
     }
 
     public HomePage(WebDriver exitedDriver) {
